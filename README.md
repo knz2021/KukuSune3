@@ -1,4 +1,4 @@
-# KukuSnake2 - Multiplication Learning Game
+# KukuSune3 - Multiplication Learning Game
 
 KukuSnake2 is an educational game that combines the classic Snake game mechanics with multiplication practice. Players navigate their snake through a field while solving multiplication problems and avoiding four enemy snakes.
 
