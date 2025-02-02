@@ -147,12 +147,11 @@ body {
     let scoreMultiplier = 1;
     let noWallCollision = false;
 
-    // 敵蛇関連変数（4匹分）
+    // 敵蛇関連変数（3匹分）
     let enemySnakes = [
     { body: [], dx: 0, dy: 0, speed: 400, color: '#ff4444' },  // 赤蛇
     { body: [], dx: 0, dy: 0, speed: 400, color: '#ff8800' },  // オレンジ蛇
-    { body: [], dx: 0, dy: 0, speed: 400, color: '#cc44ff' },  // 紫蛇
-    { body: [], dx: 0, dy: 0, speed: 400, color: '#44ff44' }   // 緑蛇
+    { body: [], dx: 0, dy: 0, speed: 400, color: '#cc44ff' }   // 紫蛇
 ];
 
 function selectDifficulty(mode) {
@@ -209,35 +208,16 @@ function selectDifficulty(mode) {
     let currentQuestion = { num1: 0, num2: 0, result: 0 };
 
     // 敵蛇初期化
-function initEnemySnakes() {
+    function initEnemySnakes() {
     enemySnakes.forEach((enemy, index) => {
         enemy.body = [];
         
-        // それぞれの蛇の開始位置をずらす（4つの象限に分ける）
-        const quadrant = index % 4;
-        let startX, startY;
+        // それぞれの蛇の開始位置を少しずらす
+        const startX = Math.floor(Math.random() * (tileCount - 10)) + 5;
+        const startY = Math.floor(Math.random() * (tileCount - 10)) + 5;
         
-        switch(quadrant) {
-            case 0: // 左上
-                startX = Math.floor(Math.random() * (tileCount/2 - 5)) + 5;
-                startY = Math.floor(Math.random() * (tileCount/2 - 5)) + 5;
-                break;
-            case 1: // 右上
-                startX = Math.floor(Math.random() * (tileCount/2 - 5)) + tileCount/2;
-                startY = Math.floor(Math.random() * (tileCount/2 - 5)) + 5;
-                break;
-            case 2: // 左下
-                startX = Math.floor(Math.random() * (tileCount/2 - 5)) + 5;
-                startY = Math.floor(Math.random() * (tileCount/2 - 5)) + tileCount/2;
-                break;
-            case 3: // 右下
-                startX = Math.floor(Math.random() * (tileCount/2 - 5)) + tileCount/2;
-                startY = Math.floor(Math.random() * (tileCount/2 - 5)) + tileCount/2;
-                break;
-        }
-        
-        // 4つの異なる進行方向を設定
-        const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]; // 右、左、下、上
+        // 進行方向を3匹でそれぞれ変える
+        const directions = [[1, 0], [-1, 0], [0, 1]]; // 右、左、下
         const [dirX, dirY] = directions[index];
         
         for(let i = 0; i < 5; i++) {
