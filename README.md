@@ -14,7 +14,6 @@ KukuSnake2 is an educational game that combines the classic Snake game mechanics
 1. Red Snake - Starts from top-left quadrant
 2. Orange Snake - Starts from top-right quadrant
 3. Purple Snake - Starts from bottom-left quadrant
-4. Green Snake - Starts from bottom-right quadrant
 
 ### Difficulty Levels
 
