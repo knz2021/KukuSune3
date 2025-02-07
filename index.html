@@ -434,7 +434,7 @@ function saveScore(score, nickname, difficulty) {
     rankings[difficulty].sort((a, b) => b.score - a.score);
     
     // 上位10件のみ保持
-    rankings[difficulty] = rankings[difficulty].slice(0, 10);
+    rankings[difficulty] = rankings[difficulty].slice(0, 5);
     
     localStorage.setItem('snakeRankings', JSON.stringify(rankings));
 }
