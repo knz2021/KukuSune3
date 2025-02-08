@@ -11,149 +11,174 @@
             box-sizing: border-box;
             touch-action: none;
         }
-body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #fcfc98;
-        font-family: Arial, sans-serif;
-        min-height: 100vh;
-        padding: 10px;
-    }
-
-    h1 {
-        color: #1990da;
-        margin: 5px;
-        font-size: clamp(1.2rem, 4vw, 2rem);
-        text-align: center;
-    }
-
-    #game-container {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        aspect-ratio: 1;
-        margin: 10px auto;
-    }
-
-    #gameCanvas {
-        width: 100%;
-        height: 100%;
-        border: 2px solid #f9e054;
-        background-color: #f5deb3;
-    }
-
-    #score {
-        font-size: clamp(1rem, 3vw, 1.5rem);
-        color: #197fec;
-        margin: 5px;
-        text-align: center;
-    }
-
-    #question {
-        font-size: clamp(1rem, 3vw, 1.5rem);
-        color: #0b7bea;
-        margin: 10px;
-        padding: 5px;
-        background-color: #f3d448;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    #game-over {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #49a3db;
-        background-color: rgba(250, 223, 223, 0.9);
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        display: none;
-        width: 90%;
-        max-width: 300px;
-    }
-
-    #controls {
-        display: none !important;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
-        width: 100%;
-        max-width: 300px;
-        margin: 10px auto;
-    }
-
-    .control-btn {
-        padding: 5px;
-        font-size: clamp(1rem, 3vw, 1.2rem);
-        background-color: #89c8b3;
-        color: rgb(50, 152, 248);
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        touch-action: manipulation;
-    }
-
-    .control-btn:active {
-        background-color: #79b8a3;
-    }
-
-    button {
-        padding: 5px 10px;
-        font-size: clamp(1rem, 3vw, 1.2rem);
-        background-color: #a2dcc9;
-        color: rgb(50, 152, 248);
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 10px;
-    }
-
-    button:hover {
-        background-color: #f3d448;
-    }
-
-    #difficulty-selection {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin: 10px 0;
-    }
-
-    @media (max-height: 600px) {
-        h1 {
-            font-size: 1rem;
-            margin: 5px;
-        }
-        #game-container {
-            margin: 5px auto;
-        }
-        .control-btn {
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fcfc98;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
             padding: 10px;
         }
-    }
-    .ranking table {
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-.ranking th, .ranking td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-.ranking th {
-    background-color: #f3d448;
-    color: #0b7bea;
-}
-#nickname-input {
-    border: 2px solid #f3d448;
-    border-radius: 5px;
-    font-size: 16px;
-}
-</style>
-</head> <body> <h1>ククスネ</h1> <div id="difficulty-selection"> <button onclick="selectDifficulty('easy')">イージーモード</button> <button onclick="selectDifficulty('normal')">ノーマルモード</button> <button onclick="selectDifficulty('hard')">ハードモード</button> </div> <div id="question">問題: </div> <div id="score">スコア: 0</div> <div id="game-container"> <canvas id="gameCanvas"></canvas> <div id="game-over"> <h2>ゲームオーバー!</h2> <p>最終スコア: <span id="final-score">0</span></p> <p><span id="game-over-reason"></span></p> <button onclick="restartGame()">再プレイ</button> </div> </div> <div id="controls"> <div></div> <button class="control-btn" id="upBtn">↑</button> <div></div> <button class="control-btn" id="leftBtn">←</button> <button class="control-btn" id="downBtn">↓</button> <button class="control-btn" id="rightBtn">→</button> </div>
+
+        h1 {
+            color: #1990da;
+            margin: 5px;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            text-align: center;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 1;
+            margin: 10px auto;
+        }
+
+        #gameCanvas {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #f9e054;
+            background-color: #f5deb3;
+        }
+
+        #score {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #197fec;
+            margin: 5px;
+            text-align: center;
+        }
+
+        #question {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #0b7bea;
+            margin: 10px;
+            padding: 5px;
+            background-color: #f3d448;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #49a3db;
+            background-color: rgba(250, 223, 223, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        #controls {
+            display: none !important;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+        }
+
+        .control-btn {
+            padding: 5px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            background-color: #89c8b3;
+            color: rgb(50, 152, 248);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .control-btn:active {
+            background-color: #79b8a3;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            background-color: #a2dcc9;
+            color: rgb(50, 152, 248);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #f3d448;
+        }
+
+        #difficulty-selection {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        @media (max-height: 600px) {
+            h1 {
+                font-size: 1rem;
+                margin: 5px;
+            }
+            #game-container {
+                margin: 5px auto;
+            }
+            .control-btn {
+                padding: 10px;
+            }
+        }
+        .ranking table {
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .ranking th, .ranking td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .ranking th {
+            background-color: #f3d448;
+            color: #0b7bea;
+        }
+        #nickname-input {
+            border: 2px solid #f3d448;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ククスネ</h1>
+    <div id="difficulty-selection">
+        <button onclick="selectDifficulty('easy')">イージーモード</button>
+        <button onclick="selectDifficulty('normal')">ノーマルモード</button>
+        <button onclick="selectDifficulty('hard')">ハードモード</button>
+    </div>
+    <div id="question">問題: </div>
+    <div id="score">スコア: 0</div>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="game-over">
+            <h2>ゲームオーバー!</h2>
+            <p>最終スコア: <span id="final-score">0</span></p>
+            <p><span id="game-over-reason"></span></p>
+        </div>
+    </div>
+    <div id="controls">
+        <div></div>
+        <button class="control-btn" id="upBtn">↑</button>
+        <div></div>
+        <button class="control-btn" id="leftBtn">←</button>
+        <button class="control-btn" id="downBtn">↓</button>
+        <button class="control-btn" id="rightBtn">→</button>
+    </div>
 
 <script>
     const canvas = document.getElementById('gameCanvas');
@@ -165,38 +190,37 @@ body {
     let scoreMultiplier = 1;
     let noWallCollision = false;
 
-    // 敵蛇関連変数（3匹分）
     let enemySnakes = [
-    { body: [], dx: 0, dy: 0, speed: 400, color: '#ff4444' },  // 赤蛇
-    { body: [], dx: 0, dy: 0, speed: 400, color: '#ff8800' },  // オレンジ蛇
-    { body: [], dx: 0, dy: 0, speed: 400, color: '#cc44ff' }   // 紫蛇
-];
+        { body: [], dx: 0, dy: 0, speed: 400, color: '#ff4444' },
+        { body: [], dx: 0, dy: 0, speed: 400, color: '#ff8800' },
+        { body: [], dx: 0, dy: 0, speed: 400, color: '#cc44ff' }
+    ];
 
-function selectDifficulty(mode) {
-    difficulty = mode;
-    switch(mode) {
-        case 'easy':
-            gameSpeed = 300;
-            enemySnakes.forEach(e => e.speed = 600);
-            scoreMultiplier = 0.5;
-            noWallCollision = true;
-            break;
-        case 'normal':
-            gameSpeed = 200;
-            enemySnakes.forEach(e => e.speed = 400);
-            scoreMultiplier = 1;
-            noWallCollision = true;
-            break;
-        case 'hard':
-            gameSpeed = 100;
-            enemySnakes.forEach(e => e.speed = 200);
-            scoreMultiplier = 2;
-            noWallCollision = true;
-            break;
+    function selectDifficulty(mode) {
+        difficulty = mode;
+        switch(mode) {
+            case 'easy':
+                gameSpeed = 300;
+                enemySnakes.forEach(e => e.speed = 600);
+                scoreMultiplier = 0.5;
+                noWallCollision = true;
+                break;
+            case 'normal':
+                gameSpeed = 200;
+                enemySnakes.forEach(e => e.speed = 400);
+                scoreMultiplier = 1;
+                noWallCollision = true;
+                break;
+            case 'hard':
+                gameSpeed = 100;
+                enemySnakes.forEach(e => e.speed = 200);
+                scoreMultiplier = 2;
+                noWallCollision = true;
+                break;
+        }
+        document.getElementById('difficulty-selection').style.display = 'none';
+        restartGame();
     }
-    document.getElementById('difficulty-selection').style.display = 'none';
-    restartGame();
-}
 
     function resizeCanvas() {
         const container = document.getElementById('game-container');
@@ -225,34 +249,31 @@ function selectDifficulty(mode) {
     let gameOverReason = "";
     let currentQuestion = { num1: 0, num2: 0, result: 0 };
 
-// 敵蛇初期化（プレイヤーの初期位置と一定の距離を離す）
-function initEnemySnakes() {
-    enemySnakes.forEach((enemy, index) => {
-        enemy.body = [];
-        
-        let startX, startY;
-        let safeDistance = 5; // プレイヤーと最低限離す距離
-        do {
-            startX = Math.floor(Math.random() * (tileCount - 10)) + 5;
-            startY = Math.floor(Math.random() * (tileCount - 10)) + 5;
-        } while (Math.abs(startX - snake[0].x) < safeDistance && Math.abs(startY - snake[0].y) < safeDistance);
+    function initEnemySnakes() {
+        enemySnakes.forEach((enemy, index) => {
+            enemy.body = [];
+            
+            let startX, startY;
+            let safeDistance = 5;
+            do {
+                startX = Math.floor(Math.random() * (tileCount - 10)) + 5;
+                startY = Math.floor(Math.random() * (tileCount - 10)) + 5;
+            } while (Math.abs(startX - snake[0].x) < safeDistance && Math.abs(startY - snake[0].y) < safeDistance);
 
-        const directions = [[1, 0], [-1, 0], [0, 1]];
-        const [dirX, dirY] = directions[index];
+            const directions = [[1, 0], [-1, 0], [0, 1]];
+            const [dirX, dirY] = directions[index];
 
-        for(let i = 0; i < 5; i++) {
-            enemy.body.push({ 
-                x: startX + (i * dirX),
-                y: startY + (i * dirY)
-            });
-        }
-        enemy.dx = dirX;
-        enemy.dy = dirY;
-    });
-}
+            for(let i = 0; i < 5; i++) {
+                enemy.body.push({ 
+                    x: startX + (i * dirX),
+                    y: startY + (i * dirY)
+                });
+            }
+            enemy.dx = dirX;
+            enemy.dy = dirY;
+        });
+    }
 
-
-    // 敵蛇移動
     function moveEnemies() {
         if(gameOver) return;
         
@@ -407,289 +428,248 @@ function initEnemySnakes() {
         });
     }
 
- // ニックネームの保存と取得
-function getLastNickname() {
-    return localStorage.getItem('lastNickname') || '';
-}
+    function getLastNickname() {
+        return localStorage.getItem('lastNickname') || '';
+    }
 
-function saveNickname(nickname) {
-    localStorage.setItem('lastNickname', nickname);
-}
-
-// スコアの保存関数を修正
-function saveScore(score, nickname, difficulty) {
-    const rankings = JSON.parse(localStorage.getItem('snakeRankings') || '{}');
-    if (!rankings[difficulty]) {
-        rankings[difficulty] = [];
+    function saveNickname(nickname) {
+        localStorage.setItem('lastNickname', nickname);
     }
-    
-    // スコア、ニックネーム、日時を追加
-    rankings[difficulty].push({
-        score: score,
-        nickname: nickname,
-        date: new Date().toLocaleString()
-    });
-    
-    // スコアで降順ソート
-    rankings[difficulty].sort((a, b) => b.score - a.score);
-    
-    // 上位10件のみ保持
-    rankings[difficulty] = rankings[difficulty].slice(0, 5);
-    
-    localStorage.setItem('snakeRankings', JSON.stringify(rankings));
-}
-
-function displayRanking() {
-    const rankings = JSON.parse(localStorage.getItem('snakeRankings') || '{}');
-    const currentDifficulty = difficulty;
-    const difficultyRankings = rankings[currentDifficulty] || [];
-    
-    let rankingHtml = `
-        <div style="margin-top: 10px; text-align: center;">
-            <h3>${currentDifficulty}モードランキング</h3>
-            <table style="margin: 0 auto; width: 90%; max-width: 400px;">
-                <tr>
-                    <th>順位</th>
-                    <th>プレイヤー</th>
-                    <th>スコア</th>
-                    <th>日時</th>
-                </tr>
-    `;
-    
-    difficultyRankings.forEach((record, index) => {
-        rankingHtml += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${record.nickname || '名無し'}</td>
-                <td>${record.score}</td>
-                <td>${record.date}</td>
-            </tr>
-        `;
-    });
-    
-    rankingHtml += '</table></div>';
-    
-    const gameOverDiv = document.getElementById('game-over');
-    const existingRanking = gameOverDiv.querySelector('.ranking');
-    if (existingRanking) {
-        existingRanking.remove();
-    }
-    
-    const rankingDiv = document.createElement('div');
-    rankingDiv.className = 'ranking';
-    rankingDiv.innerHTML = rankingHtml;
-    gameOverDiv.appendChild(rankingDiv);
-}
-
-// ゲームオーバー時の処理を修正
-function setGameOver(reason) {
-    gameOver = true;
-    gameOverReason = reason;
-    
-    const gameOverDiv = document.getElementById('game-over');
-    const finalScoreSpan = document.getElementById('final-score');
-    const reasonSpan = document.getElementById('game-over-reason');
-    
-    finalScoreSpan.textContent = score;
-    reasonSpan.textContent = reason;
-    
-    // ニックネーム入力フォームを追加
-    const nicknameSectionHtml = `
-        <div class="nickname-section" style="margin: 15px 0;">
-            <input type="text" id="nickname-input" 
-                   placeholder="ニックネームを入力" 
-                   maxlength="10"
-                   value="${getLastNickname()}"
-                   style="padding: 5px; margin-right: 5px;">
-            <button onclick="submitScore()" style="padding: 5px 10px;">
-                スコアを登録
-            </button>
-        </div>
-    `;
-    
-    gameOverDiv.innerHTML += nicknameSectionHtml;
-    gameOverDiv.style.display = 'block';
-    document.getElementById('difficulty-selection').style.display = 'flex';
-    
-    // 入力フォームにフォーカス
-    const nicknameInput = document.getElementById('nickname-input');
-    nicknameInput.focus();
-    nicknameInput.select();
-}
-
-// スコア登録処理
-function submitScore() {
-    const nicknameInput = document.getElementById('nickname-input');
-    const nickname = nicknameInput.value.trim() || '名無し';
-    
-    saveNickname(nickname);
-    saveScore(score, nickname, difficulty);
-    displayRanking();
-    
-    // 入力フォームを非表示にし、再プレイボタンを表示
-    const nicknameSection = document.querySelector('.nickname-section');
-    if (nicknameSection) {
-        nicknameSection.style.display = 'none';
-    }
-    
-    // 再プレイボタンを追加（まだ表示されていない場合）
-    if (!document.querySelector('#game-over button[onclick="restartGame()"]')) {
-        const restartButton = document.createElement('button');
-        restartButton.onclick = restartGame;
-        restartButton.textContent = '再プレイ';
-        document.getElementById('game-over').appendChild(restartButton);
-    }
-}
-
-// スタイルの追加
-const style = document.createElement('style');
-style.textContent = `
-    .ranking table {
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-    .ranking th, .ranking td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: center;
-    }
-    .ranking th {
-        background-color: #f3d448;
-        color: #0b7bea;
-    }
-    #nickname-input {
-        border: 2px solid #f3d448;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-`;
-document.head.appendChild(style);
-
-    function drawGame() {
-        if (gameOver) {
-            return;
+    function saveScore(score, nickname, difficulty) {
+            const rankings = JSON.parse(localStorage.getItem('snakeRankings') || '{}');
+            if (!rankings[difficulty]) {
+                rankings[difficulty] = [];
+            }
+            
+            rankings[difficulty].push({
+                score: score,
+                nickname: nickname,
+                date: new Date().toLocaleString()
+            });
+            
+            rankings[difficulty].sort((a, b) => b.score - a.score);
+            rankings[difficulty] = rankings[difficulty].slice(0, 5);
+            
+            localStorage.setItem('snakeRankings', JSON.stringify(rankings));
         }
 
-        clearCanvas();
-        moveSnake();
-        checkCollision();
-        drawSnake();
-        drawEnemies();
-        drawFoods();
-        setTimeout(drawGame, gameSpeed);
-    }
-
-    function clearCanvas() {
-        ctx.fillStyle = '#f5deb3';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function moveSnake() {
-        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
-
-        if (noWallCollision) {
-            if (head.x < 0) head.x = tileCount - 1;
-            if (head.x >= tileCount) head.x = 0;
-            if (head.y < 0) head.y = tileCount - 1;
-            if (head.y >= tileCount) head.y = 0;
+        function displayRanking() {
+            const rankings = JSON.parse(localStorage.getItem('snakeRankings') || '{}');
+            const currentDifficulty = difficulty;
+            const difficultyRankings = rankings[currentDifficulty] || [];
+            
+            let rankingHtml = `
+                <div style="margin-top: 10px; text-align: center;">
+                    <h3>${currentDifficulty}モードランキング</h3>
+                    <table style="margin: 0 auto; width: 90%; max-width: 400px;">
+                        <tr>
+                            <th>順位</th>
+                            <th>プレイヤー</th>
+                            <th>スコア</th>
+                            <th>日時</th>
+                        </tr>
+            `;
+            
+            difficultyRankings.forEach((record, index) => {
+                rankingHtml += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${record.nickname || '名無し'}</td>
+                        <td>${record.score}</td>
+                        <td>${record.date}</td>
+                    </tr>
+                `;
+            });
+            
+            rankingHtml += '</table></div>';
+            
+            const gameOverDiv = document.getElementById('game-over');
+            const existingRanking = gameOverDiv.querySelector('.ranking');
+            if (existingRanking) {
+                existingRanking.remove();
+            }
+            
+            const rankingDiv = document.createElement('div');
+            rankingDiv.className = 'ranking';
+            rankingDiv.innerHTML = rankingHtml;
+            gameOverDiv.appendChild(rankingDiv);
         }
 
-        snake.unshift(head);
-        snake.pop();
-    }
-
-    function checkCollision() {
-        const head = snake[0];
-
-        if (!noWallCollision && (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount)) {
-            setGameOver("壁にぶつかりました！");
-            return;
+        function setGameOver(reason) {
+            gameOver = true;
+            gameOverReason = reason;
+            
+            const gameOverDiv = document.getElementById('game-over');
+            gameOverDiv.innerHTML = `
+                <h2>ゲームオーバー!</h2>
+                <p>最終スコア: <span id="final-score">${score}</span></p>
+                <p><span id="game-over-reason">${reason}</span></p>
+                <div class="nickname-section" style="margin: 15px 0;">
+                    <input type="text" id="nickname-input" 
+                           placeholder="ニックネームを入力" 
+                           maxlength="10"
+                           value="${getLastNickname()}"
+                           style="padding: 5px; margin-right: 5px;">
+                    <button onclick="submitScore()" style="padding: 5px 10px;">
+                        スコアを登録
+                    </button>
+                </div>
+            `;
+            
+            gameOverDiv.style.display = 'block';
+            document.getElementById('difficulty-selection').style.display = 'flex';
+            
+            const nicknameInput = document.getElementById('nickname-input');
+            nicknameInput.focus();
+            nicknameInput.select();
         }
 
-        for (let i = 1; i < snake.length; i++) {
-            if (head.x === snake[i].x && head.y === snake[i].y) {
-                setGameOver("自分にぶつかりました！");
-                return;
+        function submitScore() {
+            const nicknameInput = document.getElementById('nickname-input');
+            const nickname = nicknameInput.value.trim() || '名無し';
+            
+            saveNickname(nickname);
+            saveScore(score, nickname, difficulty);
+            displayRanking();
+            
+            const nicknameSection = document.querySelector('.nickname-section');
+            if (nicknameSection) {
+                nicknameSection.remove();
+            }
+            
+            if (!document.querySelector('#game-over button[onclick="restartGame()"]')) {
+                const restartButton = document.createElement('button');
+                restartButton.onclick = restartGame;
+                restartButton.textContent = '再プレイ';
+                document.getElementById('game-over').appendChild(restartButton);
             }
         }
 
-        enemySnakes.forEach(enemy => {
-            for(let segment of enemy.body) {
-                if(head.x === segment.x && head.y === segment.y) {
-                    setGameOver("敵蛇にぶつかりました！");
+        function drawGame() {
+            if (gameOver) {
+                return;
+            }
+
+            clearCanvas();
+            moveSnake();
+            checkCollision();
+            drawSnake();
+            drawEnemies();
+            drawFoods();
+            setTimeout(drawGame, gameSpeed);
+        }
+
+        function clearCanvas() {
+            ctx.fillStyle = '#f5deb3';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function moveSnake() {
+            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+            if (noWallCollision) {
+                if (head.x < 0) head.x = tileCount - 1;
+                if (head.x >= tileCount) head.x = 0;
+                if (head.y < 0) head.y = tileCount - 1;
+                if (head.y >= tileCount) head.y = 0;
+            }
+
+            snake.unshift(head);
+            snake.pop();
+        }
+
+        function checkCollision() {
+            const head = snake[0];
+
+            if (!noWallCollision && (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount)) {
+                setGameOver("壁にぶつかりました！");
+                return;
+            }
+
+            for (let i = 1; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    setGameOver("自分にぶつかりました！");
                     return;
                 }
             }
-        });
 
-        for (let i = 0; i < foods.length; i++) {
-            if (head.x === foods[i].x && head.y === foods[i].y) {
-                if (foods[i].isCorrect) {
-                    score += Math.round(10 * scoreMultiplier);
-                    snake.push({});
-                    document.getElementById('score').textContent = `スコア: ${score}`;
-                    generateQuestion();
-                    generateFoods();
-                } else {
-                    setGameOver(`不正解！正解は ${currentQuestion.result}`);
+            enemySnakes.forEach(enemy => {
+                for(let segment of enemy.body) {
+                    if(head.x === segment.x && head.y === segment.y) {
+                        setGameOver("敵蛇にぶつかりました！");
+                        return;
+                    }
                 }
-                break;
+            });
+
+            for (let i = 0; i < foods.length; i++) {
+                if (head.x === foods[i].x && head.y === foods[i].y) {
+                    if (foods[i].isCorrect) {
+                        score += Math.round(10 * scoreMultiplier);
+                        snake.push({});
+                        document.getElementById('score').textContent = `スコア: ${score}`;
+                        generateQuestion();
+                        generateFoods();
+                    } else {
+                        setGameOver(`不正解！正解は ${currentQuestion.result}`);
+                    }
+                    break;
+                }
             }
         }
-    }
 
-    function drawSnake() {
-        ctx.fillStyle = '#66cdaa';
-        snake.forEach(segment => {
-            ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
-        });
-    }
-
-    function drawEnemies() {
-        enemySnakes.forEach(enemy => {
-            ctx.fillStyle = enemy.color;
-            enemy.body.forEach(segment => {
+        function drawSnake() {
+            ctx.fillStyle = '#66cdaa';
+            snake.forEach(segment => {
                 ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
             });
-        });
-    }
+        }
 
-    function drawFoods() {
-        foods.forEach(food => {
-            ctx.fillStyle = 'hotpink';
-            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
-            
-            ctx.fillStyle = 'white';
-            ctx.font = `${gridSize * 0.6}px Arial`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(
-                food.value.toString(),
-                food.x * gridSize + gridSize/2,
-                food.y * gridSize + gridSize/2
-            );
-        });
-    }
+        function drawEnemies() {
+            enemySnakes.forEach(enemy => {
+                ctx.fillStyle = enemy.color;
+                enemy.body.forEach(segment => {
+                    ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+                });
+            });
+        }
 
-    function restartGame() {
-        resizeCanvas();
-        snake = [{ x: Math.floor(tileCount/2), y: Math.floor(tileCount/2) }];
-        initEnemySnakes();
-        dx = 0;
-        dy = 0;
-        score = 0;
-        gameOver = false;
-        gameOverReason = "";
-        document.getElementById('score').textContent = `スコア: ${score}`;
-        document.getElementById('game-over').style.display = 'none';
-        generateQuestion();
-        generateFoods();
-        moveEnemies();
-        drawGame();
-    }
+        function drawFoods() {
+            foods.forEach(food => {
+                ctx.fillStyle = 'hotpink';
+                ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+                
+                ctx.fillStyle = 'white';
+                ctx.font = `${gridSize * 0.6}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(
+                    food.value.toString(),
+                    food.x * gridSize + gridSize/2,
+                    food.y * gridSize + gridSize/2
+                );
+            });
+        }
 
-    setupControls();
-    document.getElementById('difficulty-selection').style.display = 'flex';
-</script>
-</body> 
+        function restartGame() {
+            resizeCanvas();
+            snake = [{ x: Math.floor(tileCount/2), y: Math.floor(tileCount/2) }];
+            initEnemySnakes();
+            dx = 0;
+            dy = 0;
+            score = 0;
+            gameOver = false;
+            gameOverReason = "";
+            document.getElementById('score').textContent = `スコア: ${score}`;
+            document.getElementById('game-over').style.display = 'none';
+            generateQuestion();
+            generateFoods();
+            moveEnemies();
+            drawGame();
+        }
+
+        setupControls();
+        document.getElementById('difficulty-selection').style.display = 'flex';
+    </script>
+</body>
 </html>
